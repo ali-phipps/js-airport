@@ -1,13 +1,14 @@
 describe("Airport", function() {
-  var airport;
+  var heathrow;
   var plane;
 
   beforeEach(function() {
-    airport = new Airport();
-    plane = new Plane();
+    heathrow = new Airport();
+    plane = jasmine.createSpyObj("Plane", { 'test_method': true });
   });
+  
   it('lands a plane when sunny', function(){
-
-    expect(airport.land(plane)).toEqual([plane]);
+    expect(heathrow.land(plane)).toEqual([plane]);
+    expect(plane.test_method).toHaveBeenCalled();
   });
 });
